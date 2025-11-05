@@ -1,0 +1,97 @@
+{
+  "categorias": [
+    {
+      "id": "agendamento",
+      "nome": "Agendamento",
+      "templates": [
+        {
+          "value": "agendamento-instalacao",
+          "text": "Primeiro Contato",
+          "mensagem": "Antes de agendarmos a instalação, preciso confirmar algumas informações importantes:\n\n- É necessário que você possua o Pinpad no seu estabelecimento. *Caso ainda não tenha feito a aquisição, deverá solicitar para sua adquirente*.\n\n- Além disso, é fundamental que o computador utilizado como frente de caixa já tenha o software da *{inputAutomacao}* instalado e configurado corretamente.\n\n- Informamos que a versão mínima do sistema operacional Windows requerida é o *Windows 10*. Isso garantirá que a implantação seja concluída de forma eficiente e sem contratempos.\n\n- *É importante destacar que todo o processo de instalação será realizado de forma remota*. No dia agendado, será necessário que haja alguém presente no local para fornecer acesso remoto.\n\n- Após a conclusão da instalação do TEF, será necessário que você entre em contato com sua automação para solicitar que eles realizem a integração com o TEF.\n\n- Assim que a integração for concluída, nos avise imediatamente para realizarmos o teste de venda. Para o teste, solicitamos que seja realizada uma transação de *débito com o valor mínimo de R$1,00* para verificar se todas as transações estão sendo processadas corretamente. *Ressaltamos que, após o teste, o TEF será temporariamente bloqueado por motivos de segurança.*",
+          "campos": [
+            {
+              "id": "inputAutomacao",
+              "label": "Software House:",
+              "placeholder": "Ex: AutomaçãoX",
+              "tipo": "text",
+              "campoId": "fieldsAgendamentoInstalacao"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instalacao",
+      "nome": "Instalação",
+      "templates": [
+        {
+          "value": "pos-instalacao",
+          "text": "Pós-Instalação",
+          "mensagem": "Pronto, agora será preciso que a {inputIntegradora} realize a integração com o TEF. Deixei as informações que eles vão precisar no arquivo 'automação' que está dentro da pasta Qualità, na área de trabalho. Depois que eles configurarem, preciso que realize um teste de venda.\n\nPara o teste, solicitamos que seja realizada uma transação de DÉBITO com o valor mínimo de R$1,00 para verificar se todas as transações estão sendo processadas corretamente. Ressaltamos que, após o teste, o TEF será temporariamente bloqueado por motivos de segurança até a sua confirmação não houve nenhum problema.",
+          "campos": [
+            {
+              "id": "inputIntegradora",
+              "label": "Software House:",
+              "placeholder": "Ex: AutomaçãoX",
+              "tipo": "text",
+              "campoId": "fieldsPosInstalacao"
+            }
+          ]
+        },
+        {
+          "value": "pos-teste",
+          "text": "Pós-Teste",
+          "mensagem": "Olá, verifiquei que o teste foi realizado.\n\nAgora o teste será enviado por e-mail para {inputEmailCliente}, e o TEF será temporariamente bloqueado por motivos de segurança. Para a liberação do TEF, é necessário que seja assinado eletronicamente o termo que será enviado junto com o teste, confirmando que não houve nenhum problema.\n\nApós a confirmação através da assinatura eletrônica, o TEF será automaticamente liberado em cerca de 30 minutos.",
+          "campos": [
+            {
+              "id": "inputEmailCliente",
+              "label": "E-mail do Cliente:",
+              "placeholder": "Ex: joao@loja.com.br",
+              "tipo": "email",
+              "campoId": "fieldsPosTeste"
+            }
+          ]
+        },
+        {
+          "value": "treinamento",
+          "text": "Treinamento",
+          "mensagem": "Para melhor utilização dos recursos do TEF Qualità e seus relatórios gerenciais, e orientações para prevenção de fraudes, enfatizamos a importância da participação de sua empresa no treinamento.\n\nAs sessões ao vivo acontecem todas as *quartas-feiras*, *às 15h*, por meio do link: https://meet.google.com/ggv-kzjx-zbj. Basta acessar no horário indicado.\n\nCaso prefira, também disponibilizamos uma versão gravada do treinamento no YouTube, com transcrição por temas para facilitar a navegação e o entendimento dos conteúdos abordados no link: https://youtu.be/fP0jadzgf7c",
+          "campos": []
+        }
+      ]
+    },
+    {
+      "id": "atendimentos-geral",
+      "nome": "Atendimentos em Geral",
+      "templates": [
+        {
+          "value": "troca-roteamento",
+          "text": "Troca de Roteamento",
+          "mensagem": "Precisamos que a solicitação seja feita por e-mail.\n\nVocê pode enviar o número lógico da {inputAdquirenteNew} para varejo.suporte@qualita.inf.br, informando o CNPJ e quais bandeiras deseja alterar para a {inputAdquirenteNew}.\n\nO prazo para realização dessa configuração é de até 2 dias úteis após o recebimento do e-mail.",
+          "campos": [
+            {
+              "id": "inputAdquirenteNew",
+              "label": "Adquirente Nova:",
+              "placeholder": "Ex: Rede, Cielo, Getnet",
+              "tipo": "text",
+              "campoId": "fieldsTrocaRoteamento"
+            }
+          ]
+        },
+        {
+          "value": "configuracao-pix",
+          "text": "Configuração do PIX",
+          "mensagem": "A configuração do Pix foi realizada com sucesso. Agora precisamos que seja efetuado um teste de venda para verificar se está tudo certo com as credenciais.\n\nApós o teste, pedimos que confirme se o valor foi creditado corretamente em conta. *Enquanto não recebermos essa confirmação, o Pix permanecerá desabilitado por motivos de segurança.*",
+          "campos": []
+        },
+        {
+          "value": "estorno",
+          "text": "Estorno",
+          "mensagem": "Para realizar uma transação de estorno pelo TEF, o cliente precisa estar presente no local, pois será necessário utilizar o cartão novamente.\n\nPara iniciar a transação, acesse o menu administrativo no sistema de vendas. Em seguida, selecione a opção de estorno ou cancelamento (dependendo do sistema) e preencha as informações solicitadas: valor, data e o número do documento (NSU HOST), que consta no comprovante do cartão. Após isso, será necessário inserir o cartão novamente.\n\nCaso não saiba como acessar o menu administrativo, é importante entrar em contato com o suporte responsável pelo sistema de vendas.\n\nSe o cliente não estiver mais presente, o estorno poderá ser solicitado diretamente com a adquirente.",
+          "campos": []
+        }
+      ]
+    }
+  ]
+}
+

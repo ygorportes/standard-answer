@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Gerador de Respostas</title>
+    <link rel="stylesheet" href="src/styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Gerador de Respostas 📝</h2>
+
+      <label for="selectCategoria">Categoria:</label>
+      <select id="selectCategoria">
+        <option value="">-- Selecione uma categoria --</option>
+      </select>
+
+      <label for="selectTemplate">Tipo de Resposta:</label>
+      <select id="selectTemplate" disabled>
+        <option value="">-- Selecione um template --</option>
+      </select>
+
+      <div id="camposDinamicos"></div>
+
+      <button id="btnGerar">Gerar Resposta</button>
+
+      <h3>Resultado:</h3>
+      <textarea id="textoResultado"></textarea>
+      <div class="botoes-resultado">
+        <button id="btnCopiar">Copiar Texto</button>
+        <button id="btnLimpar">Limpar</button>
+      </div>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title" id="modalTitle">Informação</span>
+          <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="modalMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-modal" id="modalBtn">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/javascript/script.js"></script>
+  </body>
+</html>
