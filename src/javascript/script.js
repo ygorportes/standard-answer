@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const selectCategoria = document.getElementById("selectCategoria");
+  const grupoOpcaoInstalacao = document.getElementById(
+    "grupoOpcaoInstalacao"
+  );
+  const selectOpcaoInstalacao = document.getElementById(
+    "selectOpcaoInstalacao"
+  );
+  const grupoTemplate = document.getElementById("grupoTemplate");
   const selectTemplate = document.getElementById("selectTemplate");
   const camposDinamicos = document.getElementById("camposDinamicos");
 
@@ -61,10 +68,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function atualizarOpcaoInstalacao() {
+    const categoriaSelecionada = selectCategoria.value;
+    const mostrarOpcaoInstalacao = categoriaSelecionada === "instalacao";
+
+    grupoOpcaoInstalacao.hidden = !mostrarOpcaoInstalacao;
+    selectOpcaoInstalacao.disabled = !mostrarOpcaoInstalacao;
+
+    if (!mostrarOpcaoInstalacao) {
+      selectOpcaoInstalacao.value = "";
+    }
+  }
+
   function atualizarTemplates() {
     const categoriaSelecionada = selectCategoria.value;
     selectTemplate.innerHTML =
       '<option value="">-- Selecione um template --</option>';
+    grupoTemplate.hidden = categoriaSelecionada === "agendamento";
 
     if (categoriaSelecionada && dadosTemplates) {
       const categoria = dadosTemplates.categorias.find(function (cat) {
@@ -79,6 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
           option.textContent = template.text;
           selectTemplate.appendChild(option);
         });
+
+        if (categoriaSelecionada === "agendamento" && categoria.templates[0]) {
+          selectTemplate.value = categoria.templates[0].value;
+          criarCampos(categoria.templates[0]);
+          return;
+        }
       }
     } else {
       selectTemplate.disabled = true;
@@ -174,9 +200,21 @@ document.addEventListener("DOMContentLoaded", function () {
     return null;
   }
 
+  function obterMensagemTemplate(template) {
+    if (
+      template.value === "pos-instalacao" &&
+      selectOpcaoInstalacao.value === "pdvclisitef" &&
+      template.mensagemPdvClisitef
+    ) {
+      return template.mensagemPdvClisitef;
+    }
+
+    return template.mensagem;
+  }
+
   selectCategoria.addEventListener("change", function () {
     atualizarTemplates();
-    esconderTodosCampos();
+    atualizarOpcaoInstalacao();
   });
 
   selectTemplate.addEventListener("change", function () {
@@ -221,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    let textoFinal = substituirPlaceholders(template.mensagem, template);
+    let textoFinal = substituirPlaceholders(obterMensagemTemplate(template), template);
 
     textoResultado.value = textoFinal;
 
@@ -260,10 +298,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnLimpar.addEventListener("click", function () {
     selectCategoria.value = "";
+    atualizarOpcaoInstalacao();
+    grupoTemplate.hidden = false;
     selectTemplate.value = "";
     selectTemplate.disabled = true;
     selectTemplate.innerHTML =
       '<option value="">-- Selecione um template --</option>';
+    selectOpcaoInstalacao.value = "";
 
     Object.keys(camposInputs).forEach(function (inputId) {
       if (camposInputs[inputId]) {
