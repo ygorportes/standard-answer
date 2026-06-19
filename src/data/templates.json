@@ -21,6 +21,17 @@
       ]
     },
     {
+      "id": "treinamento",
+      "nome": "Treinamento",
+      "templates": [
+        {
+          "value": "treinamento",
+          "text": "Treinamento",
+          "mensagem": "Para melhor utilização dos recursos do TEF Qualità e seus relatórios gerenciais, e orientações para prevenção de fraudes, enfatizamos a importância da participação de sua empresa no treinamento.\n\nAs sessões ao vivo acontecem todas as quartas-feiras, às 15h, por meio do link: https://meet.google.com/ggv-kzjx-zbj. Basta acessar no horário indicado.\n\nCaso prefira, também disponibilizamos uma versão gravada do treinamento no YouTube, com transcrição por temas para facilitar a navegação e o entendimento dos conteúdos abordados no link: https://youtu.be/fP0jadzgf7c"
+        }
+      ]
+    },
+    {
       "id": "instalacao",
       "nome": "Instalação",
       "templates": [

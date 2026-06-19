@@ -80,11 +80,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function obterCategoriaSelecionada() {
+    const categoriaSelecionada = selectCategoria.value;
+
+    if (!categoriaSelecionada || !dadosTemplates) {
+      return null;
+    }
+
+    return dadosTemplates.categorias.find(function (categoria) {
+      return categoria.id === categoriaSelecionada;
+    });
+  }
+
+  function atualizarResultadoAutomatico() {
+    const categoriaSelecionada = selectCategoria.value;
+
+    if (categoriaSelecionada !== "treinamento") {
+      return;
+    }
+
+    const categoria = obterCategoriaSelecionada();
+
+    if (!categoria || !categoria.templates[0]) {
+      return;
+    }
+
+    const template = categoria.templates[0];
+    selectTemplate.value = template.value;
+    textoResultado.value = substituirPlaceholders(
+      obterMensagemTemplate(template),
+      template
+    );
+    textoResultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function atualizarTextoBotaoGerar() {
+    if (selectCategoria.value === "treinamento") {
+      btnGerar.textContent = "Atualizar Resposta";
+      return;
+    }
+
+    btnGerar.textContent = "Gerar Resposta";
+  }
+
   function atualizarTemplates() {
     const categoriaSelecionada = selectCategoria.value;
     selectTemplate.innerHTML =
       '<option value="">-- Selecione um template --</option>';
-    grupoTemplate.hidden = categoriaSelecionada === "agendamento";
+    grupoTemplate.hidden =
+      categoriaSelecionada === "agendamento" || categoriaSelecionada === "treinamento";
 
     if (categoriaSelecionada && dadosTemplates) {
       const categoria = dadosTemplates.categorias.find(function (cat) {
@@ -104,6 +148,10 @@ document.addEventListener("DOMContentLoaded", function () {
           selectTemplate.value = categoria.templates[0].value;
           criarCampos(categoria.templates[0]);
           return;
+        }
+
+        if (categoriaSelecionada === "treinamento" && categoria.templates[0]) {
+          selectTemplate.value = categoria.templates[0].value;
         }
       }
     } else {
@@ -215,6 +263,8 @@ document.addEventListener("DOMContentLoaded", function () {
   selectCategoria.addEventListener("change", function () {
     atualizarTemplates();
     atualizarOpcaoInstalacao();
+    atualizarTextoBotaoGerar();
+    atualizarResultadoAutomatico();
   });
 
   selectTemplate.addEventListener("change", function () {
@@ -299,6 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
   btnLimpar.addEventListener("click", function () {
     selectCategoria.value = "";
     atualizarOpcaoInstalacao();
+    atualizarTextoBotaoGerar();
     grupoTemplate.hidden = false;
     selectTemplate.value = "";
     selectTemplate.disabled = true;
